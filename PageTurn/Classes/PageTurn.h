@@ -36,11 +36,18 @@ public:
     void turnPage();
     void reversePage();
     CCPoint getOriginalPos(CCNode* pNode);
+    void registerTurnedCallBack(CCObject* selectortarget, SEL_CallFunc callfunc);
+    void unregisterTurnedCallBack(CCObject* selectortarget);
     CC_SYNTHESIZE(TouchPos, m_eTouchPos, TouchPos)
+    CC_SYNTHESIZE(bool, m_bisTurned, isTurned);
 protected:
     void symShow(float axis);
     CCPoint m_startPos;
     CCPoint m_endPos;
     CCPoint m_eachPos;
+protected:
+    CCObject* m_pSelectorTargets[20];
+    SEL_CallFunc m_pCallFuncs[20];
+    int m_nFuncNum;
 };
 #endif /* defined(__PageTurn__PageTurn__) */

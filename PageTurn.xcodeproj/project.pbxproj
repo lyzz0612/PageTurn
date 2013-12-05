@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D7060A36184C66280061C3B5 /* UseActionPageTurn3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7060A34184C66280061C3B5 /* UseActionPageTurn3D.cpp */; };
+		D7060A36184C66280061C3B5 /* PageTurnLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7060A34184C66280061C3B5 /* PageTurnLayer.cpp */; };
 		D7060A3A184C67B60061C3B5 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = D7060A37184C67B60061C3B5 /* back.png */; };
 		D7060A3B184C67B60061C3B5 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = D7060A38184C67B60061C3B5 /* left.png */; };
 		D7060A3C184C67B60061C3B5 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = D7060A39184C67B60061C3B5 /* right.png */; };
 		D7736B5C184DB260001FD889 /* PageTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7736B5A184DB260001FD889 /* PageTurn.cpp */; };
 		D786E5FF1850193F004D3E7C /* test1.png in Resources */ = {isa = PBXBuildFile; fileRef = D786E5FD1850193F004D3E7C /* test1.png */; };
 		D786E6001850193F004D3E7C /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = D786E5FE1850193F004D3E7C /* test2.png */; };
+		D786E6031850562B004D3E7C /* HelloPageTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D786E6011850562B004D3E7C /* HelloPageTurn.cpp */; };
 		D7D0B312184C61D200ADED1C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D0B311184C61D200ADED1C /* QuartzCore.framework */; };
 		D7D0B314184C61D200ADED1C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D0B313184C61D200ADED1C /* OpenGLES.framework */; };
 		D7D0B316184C61D200ADED1C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D0B315184C61D200ADED1C /* OpenAL.framework */; };
@@ -289,8 +290,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D7060A34184C66280061C3B5 /* UseActionPageTurn3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UseActionPageTurn3D.cpp; path = Classes/UseActionPageTurn3D.cpp; sourceTree = "<group>"; };
-		D7060A35184C66280061C3B5 /* UseActionPageTurn3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UseActionPageTurn3D.h; path = Classes/UseActionPageTurn3D.h; sourceTree = "<group>"; };
+		D7060A34184C66280061C3B5 /* PageTurnLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PageTurnLayer.cpp; path = Classes/PageTurnLayer.cpp; sourceTree = "<group>"; };
+		D7060A35184C66280061C3B5 /* PageTurnLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageTurnLayer.h; path = Classes/PageTurnLayer.h; sourceTree = "<group>"; };
 		D7060A37184C67B60061C3B5 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Resources/back.png; sourceTree = "<group>"; };
 		D7060A38184C67B60061C3B5 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = Resources/left.png; sourceTree = "<group>"; };
 		D7060A39184C67B60061C3B5 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = Resources/right.png; sourceTree = "<group>"; };
@@ -298,6 +299,8 @@
 		D7736B5B184DB260001FD889 /* PageTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageTurn.h; path = Classes/PageTurn.h; sourceTree = "<group>"; };
 		D786E5FD1850193F004D3E7C /* test1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test1.png; path = Resources/test1.png; sourceTree = "<group>"; };
 		D786E5FE1850193F004D3E7C /* test2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test2.png; path = Resources/test2.png; sourceTree = "<group>"; };
+		D786E6011850562B004D3E7C /* HelloPageTurn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HelloPageTurn.cpp; path = Classes/HelloPageTurn.cpp; sourceTree = "<group>"; };
+		D786E6021850562B004D3E7C /* HelloPageTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloPageTurn.h; path = Classes/HelloPageTurn.h; sourceTree = "<group>"; };
 		D7D0B30E184C61D200ADED1C /* PageTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PageTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7D0B311184C61D200ADED1C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D7D0B313184C61D200ADED1C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -2113,10 +2116,12 @@
 			children = (
 				D7D0B6B3184C61D500ADED1C /* AppDelegate.h */,
 				D7D0B6B4184C61D500ADED1C /* AppDelegate.cpp */,
-				D7060A34184C66280061C3B5 /* UseActionPageTurn3D.cpp */,
-				D7060A35184C66280061C3B5 /* UseActionPageTurn3D.h */,
+				D7060A34184C66280061C3B5 /* PageTurnLayer.cpp */,
+				D7060A35184C66280061C3B5 /* PageTurnLayer.h */,
 				D7736B5A184DB260001FD889 /* PageTurn.cpp */,
 				D7736B5B184DB260001FD889 /* PageTurn.h */,
+				D786E6011850562B004D3E7C /* HelloPageTurn.cpp */,
+				D786E6021850562B004D3E7C /* HelloPageTurn.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2277,6 +2282,7 @@
 				D7D0B4FC184C61D400ADED1C /* ZipUtils.cpp in Sources */,
 				D7D0B601184C61D400ADED1C /* WebSocket.cpp in Sources */,
 				D7D0B388184C61D200ADED1C /* CCArray.cpp in Sources */,
+				D786E6031850562B004D3E7C /* HelloPageTurn.cpp in Sources */,
 				D7D0B50B184C61D400ADED1C /* CCTextureAtlas.cpp in Sources */,
 				D7D0B405184C61D300ADED1C /* CCLayer.cpp in Sources */,
 				D7D0B679184C61D500ADED1C /* cpGrooveJoint.c in Sources */,
@@ -2438,7 +2444,7 @@
 				D7D0B5D6184C61D400ADED1C /* CCEditBox.cpp in Sources */,
 				D7D0B5E5184C61D400ADED1C /* CCEditBoxImplWin.cpp in Sources */,
 				D7D0B3FB184C61D300ADED1C /* CCLabelAtlas.cpp in Sources */,
-				D7060A36184C66280061C3B5 /* UseActionPageTurn3D.cpp in Sources */,
+				D7060A36184C66280061C3B5 /* PageTurnLayer.cpp in Sources */,
 				D7D0B3B7184C61D200ADED1C /* CCGrid.cpp in Sources */,
 				D7D0B4EE184C61D400ADED1C /* TransformUtils.cpp in Sources */,
 				D7D0B42F184C61D300ADED1C /* CCParticleSystem.cpp in Sources */,
@@ -2527,6 +2533,7 @@
 				GCC_PREFIX_HEADER = PageTurn/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = PageTurn/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/lingyun/Project/PageTurn/PageTurn/libs/cocos2dx/platform/third_party/ios/libraries,
@@ -2539,6 +2546,7 @@
 					"-websockets",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"PageTurn/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2553,6 +2561,7 @@
 				GCC_PREFIX_HEADER = PageTurn/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = PageTurn/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/lingyun/Project/PageTurn/PageTurn/libs/cocos2dx/platform/third_party/ios/libraries,
@@ -2565,6 +2574,7 @@
 					"-websockets",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"PageTurn/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

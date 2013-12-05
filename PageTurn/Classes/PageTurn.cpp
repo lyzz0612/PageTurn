@@ -10,7 +10,8 @@
 
 PageTurn::PageTurn()
 {
-    
+    m_bisTurned = false;
+    m_nFuncNum = 0;
 }
 PageTurn::~PageTurn()
 {
@@ -32,6 +33,39 @@ bool PageTurn::isDone()
 {
     return false;
 }
+void PageTurn::registerTurnedCallBack(CCObject* selectortarget, SEL_CallFunc callfunc)
+{
+    for(int i = 0;i < m_nFuncNum;i++)
+    {
+        if(m_pSelectorTargets[i] == selectortarget)
+        {
+            CCLog("Target already has a callfunction now!");
+            return;
+        }
+    }
+    CC_SAFE_RETAIN(selectortarget);
+    m_pSelectorTargets[m_nFuncNum] = selectortarget;
+    m_pCallFuncs[m_nFuncNum++] = callfunc;
+}
+void PageTurn::unregisterTurnedCallBack(CCObject *selectortarget)
+{
+    int i,j;
+    for(i = 0;i < m_nFuncNum;i++)
+    {
+        if(m_pSelectorTargets[i] == selectortarget)
+            break;
+    }
+    if(i == m_nFuncNum)
+        return;
+    CC_SAFE_RELEASE(m_pSelectorTargets[i]);
+    
+    for(j = i;j < m_nFuncNum - 1;j++)
+    {
+        m_pSelectorTargets[j] = m_pSelectorTargets[j+1];
+        m_pCallFuncs[j] = m_pCallFuncs[j+1];
+    }
+    m_nFuncNum--;
+}
 void PageTurn::update(float time)
 {
     m_startPos = m_startPos + m_eachPos;
@@ -41,6 +75,13 @@ void PageTurn::update(float time)
     if(m_startPos.y <= world_ori.y)
     {
         m_pTarget->stopAction(this);
+        if(m_bisTurned && m_nFuncNum > 0)
+        {
+            for (int i = 0; i < m_nFuncNum; i++) {
+                (m_pSelectorTargets[i]->*m_pCallFuncs[i])();
+            }
+            
+        }
         return;
     }
 }
@@ -105,6 +146,29 @@ void PageTurn::changeShow(const CCPoint &TouchPoint)
     
     float line_BD_k = 0.0f - 1.0f / line_CH_k;
     float line_BD_b = ((vertex_H.y + vertex_C.y) / 2) - line_BD_k * ((vertex_H.x + vertex_C.x) / 2);
+    
+    CCPoint vertex_D;
+    CCPoint vertex_B;
+    float temp;
+    //d是bd与横线的交点
+    if(m_eTouchPos == LeftBottom || m_eTouchPos == RightBottom)
+    {
+        temp = -line_BD_b / line_BD_k;
+        if(temp < 0)
+            temp = 0;
+        if(temp > targetSize.width)
+            temp = targetSize.width;
+        line_BD_b = -temp * line_BD_k;
+    }
+    else
+    {
+        temp = (targetSize.height - line_BD_b) / line_BD_k;
+        if(temp < 0)
+            temp = 0;
+        if(temp > targetSize.width)
+            temp = targetSize.width;
+        line_BD_b = targetSize.height - temp * line_BD_k;
+    }
     
     CCPoint vertex_sym;
     float sym_z;
@@ -212,6 +276,7 @@ void PageTurn::turnPage()
     float time = m_startPos.getDistance(m_endPos) / 500;
     m_eachPos = CCPointMake( (m_endPos.x - m_startPos.x) / 60 / time, (m_endPos.y - m_startPos.y) / 60 / time);
     m_pTarget->stopAction(this);
+    m_bisTurned = true;
     m_pTarget->runAction(this);
 }
 //屏幕坐标
