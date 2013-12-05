@@ -41,16 +41,16 @@ bool HelloPageTurn::init()
     PageTurnLayer* layer = PageTurnLayer::create(left, PAGEPOSRIGHT);
     layer->setAnchorPoint(CCPointZero);
     layer->setPosition(CCPointZero);
-    layer->getTurn()->registerTurnedCallBack(this, callfunc_selector(HelloPageTurn::TurnedCallback));
+//    layer->getTurn()->registerTurnedCallBack(this, callfunc_selector(HelloPageTurn::TurnedCallback));
     
     CCSprite* left1 = CCSprite::create("left.png");
-    left1->setPosition(ccp(winsize.width / 2 - 180, winsize.height / 2 - 20));
+    left1->setPosition(ccp(winsize.width / 2 - 175, winsize.height / 2 - 25));
     PageTurnLayer* layer1 = PageTurnLayer::create(left1, PAGEPOSLEFT);
     layer1->setAnchorPoint(CCPointZero);
     layer1->setPosition(CCPointZero);
     
-    this->addChild(layer, 1, 11);
     this->addChild(layer1, 1, 12);
+    this->addChild(layer, 1, 11);
     this->addChild(back, 0, 10);
     return true;
 }

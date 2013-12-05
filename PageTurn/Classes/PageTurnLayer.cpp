@@ -41,8 +41,7 @@ bool PageTurnLayer::init(CCNode* target, PagePos pos)
 //    m_pSprite->setAnchorPoint(CCPointZero);
 //    m_pSprite->setPosition(ccp(0,0));
     
-    m_pTurn = PageTurn::create(10, CCSizeMake(winsize.width / 4, winsize.width / 4));
-    m_pTurn->startWithTarget(m_pSprite);
+    m_pTurn = PageTurn::create(10, CCSizeMake(32, 24));
     m_pTurn->retain();
     m_pTurn->registerTurnedCallBack(this, callfunc_selector(PageTurnLayer::TurnedCallback));
     this->addChild(m_pSprite);
@@ -114,6 +113,8 @@ bool PageTurnLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         
         if( CCDirector::sharedDirector()->getActionManager()->numberOfRunningActionsInTarget(m_pSprite) != 0)
             m_pSprite->stopAction(m_pTurn);
+        if(m_pSprite->getGrid() == NULL)
+            m_pTurn->startWithTarget(m_pSprite);
         
         m_pTurn->changeShow(pTouch->getLocation());
         return true;
@@ -128,7 +129,7 @@ void PageTurnLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
         rect.setRect(rect.getMinX() - rect.size.width, rect.getMinY(), rect.size.width * 2, rect.size.height);
     else
         rect.setRect(rect.getMinX(), rect.getMinY(), rect.size.width * 2, rect.size.height);
-    if(isInside(m_pSprite, touchpoint))
+    if(rect.containsPoint(touchpoint))
     {
         m_pTurn->changeShow(pTouch->getLocation());
     }

@@ -75,13 +75,17 @@ void PageTurn::update(float time)
     if(m_startPos.y <= world_ori.y)
     {
         m_pTarget->stopAction(this);
-        if(m_bisTurned && m_nFuncNum > 0)
+        if(m_bisTurned)
         {
-            for (int i = 0; i < m_nFuncNum; i++) {
-                (m_pSelectorTargets[i]->*m_pCallFuncs[i])();
+            if(m_nFuncNum > 0)
+            {
+                for (int i = 0; i < m_nFuncNum; i++) {
+                    (m_pSelectorTargets[i]->*m_pCallFuncs[i])();
+                }
             }
-            
         }
+        else
+            m_pTarget->setGrid(NULL);
         return;
     }
 }
@@ -109,7 +113,6 @@ void PageTurn::changeShow(const CCPoint &TouchPoint)
     int maxx = (worldOripos.x + targetSize.width) / winsize.width * m_sGridSize.width;
     int miny = worldOripos.y / winsize.height * m_sGridSize.height;
     int maxy = (worldOripos.y + targetSize.height) / winsize.height * m_sGridSize.height;
-    
     //以target起始点作为原点计算
     //http://design.yesky.com/flash/257/2566757.shtml 顶点命名以网页中图所示
     CCPoint vertex_C = CCPointMake(TouchPoint.x - worldOripos.x, TouchPoint.y - worldOripos.y);
@@ -131,12 +134,12 @@ void PageTurn::changeShow(const CCPoint &TouchPoint)
             break;
     }
     
-    if(vertex_C.x == vertex_H.x)
+    if( fabsf(vertex_C.x - vertex_H.x) <= 0.001f)
     {
         CCLog("No to turn Page");
         return;
     }
-    if(vertex_C.y == vertex_H.y)
+    if( fabsf(vertex_C.y - vertex_H.y) <= 0.0001f)
     {
         symShow((vertex_C.x + vertex_H.x) / 2);
         return;
@@ -173,9 +176,9 @@ void PageTurn::changeShow(const CCPoint &TouchPoint)
     CCPoint vertex_sym;
     float sym_z;
     ccVertex3F p;
-    for(int i = minx; i <= maxx + 1;++i)
+    for(int i = minx; i <= maxx;++i)
     {
-        for(int j = miny; j <= maxy + 1;++j)
+        for(int j = miny; j <= maxy ;++j)
         {
             //屏幕坐标
             p = originalVertex(ccp(i ,j));
@@ -215,14 +218,15 @@ void PageTurn::symShow(float axis)
     
     if(axis > targetSize.width)
     {
-        m_pTarget->stopAction(this);
+        if( CCDirector::sharedDirector()->getActionManager()->numberOfRunningActionsInTarget(m_pTarget) != 0)
+            m_pTarget->stopAction(this);
         return;
     }
     int minx = worldOripos.x / winsize.width * m_sGridSize.width;
     int maxx = (worldOripos.x + targetSize.width) / winsize.width * m_sGridSize.width;
     int miny = worldOripos.y / winsize.height * m_sGridSize.height;
     int maxy = (worldOripos.y + targetSize.height) / winsize.height * m_sGridSize.height;
-
+    
     ccVertex3F p;
     for(int i = minx;i <= maxx;++i)
     {
@@ -275,7 +279,8 @@ void PageTurn::turnPage()
     
     float time = m_startPos.getDistance(m_endPos) / 500;
     m_eachPos = CCPointMake( (m_endPos.x - m_startPos.x) / 60 / time, (m_endPos.y - m_startPos.y) / 60 / time);
-    m_pTarget->stopAction(this);
+    if( CCDirector::sharedDirector()->getActionManager()->numberOfRunningActionsInTarget(m_pTarget) != 0)
+        m_pTarget->stopAction(this);
     m_bisTurned = true;
     m_pTarget->runAction(this);
 }
@@ -314,9 +319,10 @@ void PageTurn::reversePage()
     ccVertex3F temp = vertex(m_startPos);
     m_startPos = CCPointMake(temp.x, temp.y);
     
-    float time = m_startPos.getDistance(CCPointMake(world_ori.x + size.width, world_ori.y)) / 500 + 0.5;
+    float time = m_startPos.getDistance(CCPointMake(world_ori.x + size.width, world_ori.y)) / 500;
     m_eachPos = CCPointMake( (m_endPos.x - m_startPos.x) / 60 / time, (m_endPos.y - m_startPos.y) / 60 / time);
-    m_pTarget->stopAction(this);
+    if( CCDirector::sharedDirector()->getActionManager()->numberOfRunningActionsInTarget(m_pTarget) != 0)
+        m_pTarget->stopAction(this);
     m_pTarget->runAction(this);
 }
 
